@@ -37,7 +37,7 @@ func WriteToDevicesTable(devices []Device) {
 		fmt.Println("New record UUID is:", uuid)
 
 	}
-  // err = db.Ping()
+	// err = db.Ping()
 	// if err != nil {
 	// 	panic(err)
 	// }

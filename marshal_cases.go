@@ -42,7 +42,6 @@ func MarshalCases(caseCSV string) []byte {
 		if err != nil {
 			fmt.Println(err)
 		}
-		//fmt.Println(t)
 
 		cases = append(cases, Case{
 			CaseNumber:    line[0],

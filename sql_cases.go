@@ -38,14 +38,13 @@ func WriteToCasesTable(cases []Case) {
 		fmt.Println("New record UUID is:", uuid)
 
 	}
-  // err = db.Ping()
+	// err = db.Ping()
 	// if err != nil {
 	// 	panic(err)
 	// }
 	//
 	// fmt.Println("Successfully connected!")
 }
-
 
 //Extra copy of table schema
 // CREATE TABLE cases (

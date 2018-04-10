@@ -44,7 +44,6 @@ func MarshalMerchants(merchantCSV string) []byte {
 		if err != nil {
 			fmt.Println(err)
 		}
-		//fmt.Println(t)
 
 		merchants = append(merchants, Merchant{
 			ID:             line[0],
@@ -55,7 +54,6 @@ func MarshalMerchants(merchantCSV string) []byte {
 			MerchantType:   line[5],
 			CloverCategory: line[6],
 			CreatedDate:    time,
-			//CreatedDate: line[7],
 		})
 	}
 

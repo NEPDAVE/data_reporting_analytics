@@ -41,7 +41,6 @@ func MarshalDevices(devicesCSV string) []byte {
 		if err != nil {
 			fmt.Println(err)
 		}
-		//fmt.Println(t)
 
 		devices = append(devices, Device{
 			ID:           line[0],
