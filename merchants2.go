@@ -9,21 +9,22 @@ import (
 	"log"
 	"os"
 	"reflect"
-	"time"
+	//"time"
 )
 
 type Merchant struct {
-	ID             string    `json:"id"`
-	Plan           string    `json:"merchant_plan_name"`
-	IsQSR          string    `json:"is_qsr"`
-	IsDemo         string    `json:"is_demo"`
-	MCCCode        string    `json:"mcc_code"`
-	MerchantType   string    `json"merchant_type"`
-	CloverCategory string    `json:"clover_category"`
-	CreatedDate    time.Time `json:"created_date"`
-	//CreatedDate    string `json:"created_date"`
+	ID             string `json:"id"`
+	Plan           string `json:"merchant_plan_name"`
+	IsQSR          string `json:"is_qsr"`
+	IsDemo         string `json:"is_demo"`
+	MCCCode        string `json:"mcc_code"`
+	MerchantType   string `json"merchant_type"`
+	CloverCategory string `json:"clover_category"`
+	//CreatedDate    time.Time `json:"created_date"`
+	CreatedDate string `json:"created_date"`
 }
 
+//opens and loads csv into memory to prepare it for work
 func MarshalMerchants(merchantCSV string) []byte {
 	//csvFile, _ := os.Open("merchants.csv")
 	csvFile, _ := os.Open(merchantCSV)
@@ -37,15 +38,16 @@ func MarshalMerchants(merchantCSV string) []byte {
 			log.Fatal(error)
 		}
 
+		//commenting this out because we ran into an issue unmarshaling the timestamp
 		//convert string to timestamp
 		//layout := "2006-01-02T15:04:05.000Z"
-		layout := "2006-01-02 15:04:05"
-		str := line[7]
-		time, err := time.Parse(layout, str)
-
-		if err != nil {
-			fmt.Println(err)
-		}
+		// layout := "2006-01-02 15:04:05"
+		// str := line[7]
+		// time, err := time.Parse(layout, str)
+		//
+		// if err != nil {
+		// 	fmt.Println(err)
+		// }
 		//fmt.Println(t)
 
 		merchants = append(merchants, Merchant{
@@ -56,8 +58,8 @@ func MarshalMerchants(merchantCSV string) []byte {
 			MCCCode:        line[4],
 			MerchantType:   line[5],
 			CloverCategory: line[6],
-			CreatedDate:    time,
-			//CreatedDate:    line[7],
+			//CreatedDate:    time,
+			CreatedDate: line[7],
 		})
 	}
 
@@ -69,6 +71,7 @@ func MarshalMerchants(merchantCSV string) []byte {
 func main() {
 	//file path could be os arg for when new files become available
 	merchantsJson := MarshalMerchants("merchants.csv")
+	fmt.Println(reflect.TypeOf(merchantsJson))
 	// for _, merchant := range merchantsJson {
 	// 	fmt.Println("#########")
 	// 	fmt.Println(reflect.TypeOf(merchant))
@@ -79,10 +82,18 @@ func main() {
 	// 	fmt.Println(Merchant)
 	// 	fmt.Println("#########")
 	// }
-	if err := json.Unmarshal(merchant, &Merchant); err != nil {
+	// for _, merchantByte := range merchantsJson{
+	//   if err := json.Unmarshal(merchantByte, &Merchant{}); err != nil {
+	// 			panic(err)
+	// 		}
+	// }
+	var merchants []Merchant
+	if err := json.Unmarshal(merchantsJson, &merchants); err != nil {
 		panic(err)
 	}
-	fmt.Println(Merchant)
-
-	fmt.Println(string(merchantsJson))
+  for _, merchant := range merchants {
+    fmt.Println(merchant)
+  }
+	//fmt.Println(string(merchantsJson))
+	fmt.Println("THE END")
 }
