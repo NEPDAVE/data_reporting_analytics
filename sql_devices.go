@@ -46,6 +46,7 @@ func WriteToDevicesTable(devices []Device) {
 	// fmt.Println("Successfully connected!")
 }
 
+//Extra copy of table schema
 // CREATE TABLE devices (
 // uuid serial PRIMARY KEY,
 // id text,

@@ -47,6 +47,8 @@ func WriteToMerchantsTable(merchants []Merchant) {
 	// fmt.Println("Successfully connected!")
 }
 
+
+//Extra copy of table schema
 // CREATE TABLE merchants (
 // uuid serial PRIMARY KEY,
 // id text,

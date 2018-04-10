@@ -47,6 +47,10 @@ func WriteToCasesTable(cases []Case) {
 	// fmt.Println("Successfully connected!")
 }
 
+
+
+
+//Extra copy of table schema 
 // CREATE TABLE cases (
 // uuid serial PRIMARY KEY,
 // case_number text,
