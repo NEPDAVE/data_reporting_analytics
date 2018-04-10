@@ -15,7 +15,7 @@ const (
 //enters merchant data into db
 fun EnterMerchantData(merchantsCSV string ) {
   //sanitizing data and converting it to native go types
-	merchantsJson := MarshalMerchants("merchants.csv")
+	merchantsJson := MarshalMerchants(merchantsCSV)
 
 	//creating slice object we can iterate through for writing to database
 	merchants := UnmarshalMerchants(merchantsJson)
@@ -27,7 +27,7 @@ fun EnterMerchantData(merchantsCSV string ) {
 //enters device data into db
 func EnterDeviceData(devicesCSV string) {
   //sanitizing data and converting it to native go types
-	devicesJson := MarshalDevices("devices.csv")
+	devicesJson := MarshalDevices(devicesCSV)
 
 	//creating slice object we can iterate through for writing to database
 	devices := UnmarshalDevices(devicesJson)
@@ -39,7 +39,7 @@ func EnterDeviceData(devicesCSV string) {
 //enters case data into db
 func EnterCaseData(casesCSV string) {
 	// //sanitizing data and converting it to native go types
-	casesJson := MarshalCases("cases.csv")
+	casesJson := MarshalCases(casesCSV)
 
 	//creating slice object we can iterate through for writing to database
 	cases := UnmarshalCases(casesJson)
@@ -50,6 +50,10 @@ func EnterCaseData(casesCSV string) {
 
 func main() {
 	//file path for Enter*Data could be os arg for when new files become available
+
+  EnterMerchantData("merchant.csv")
+	EnterDeviceData("devices.csv")
+	EnterCaseDatq("cases.csv")
 
 	fmt.Println("THE END")
 }
