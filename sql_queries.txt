@@ -1,0 +1,35 @@
+####################
+NUMBER OF MERCHANTS
+####################
+
+//Distinct number of merchant ids that are not demos
+SELECT DISTINCT COUNT(id) FROM merchants WHERE is_demo='0';
+
+//Distinct number of merchant ids that are not demos and have activated devices
+SELECT DISTINCT COUNT(m.id) FROM merchants m INNER JOIN devices d ON m.id=d.merchant_id WHERE m.is_demo='0' AND d.device_event='ACTIVATED';
+
+//Distinct number of merchant ids that are not demos and have deactivated devices
+SELECT DISTINCT COUNT(m.id) FROM merchants m INNER JOIN devices d ON m.id=d.merchant_id WHERE m.is_demo='0' AND d.device_event=‘DEACTIVATED';
+
+//Distinct number of merchant ids that are not demos and are QSR merchants
+SELECT DISTINCT COUNT(id) FROM merchants WHERE is_demo='0' AND is_qsr='1';
+
+//Distinct number of merchant ids that are not demos and not QSR merchants
+SELECT DISTINCT COUNT(id) FROM merchants WHERE is_demo='0' AND is_qsr='0';
+
+###################
+TYPES OF MERCHANTS
+###################
+
+//Distinct number of clover_categories
+SELECT DISTINCT clover_category FROM merchants;
+
+###################
+NUMBER OF DEVICES
+###################
+
+//Distinct number of devices types
+SELECT DISTINCT device_type_id FROM devices;
+
+//Distinct device events
+SELECT DISTINCT device_event FROM devices;
